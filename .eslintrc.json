@@ -1,0 +1,86 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:unicorn/recommended",
+        "plugin:import/errors",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "prettier"
+    ],
+    "plugins": [
+        "testing-library",
+        "jest-dom",
+        "unicorn",
+        "import",
+        "simple-import-sort",
+        "module-resolver",
+        "react",
+        "react-hooks",
+        "jsx-a11y",
+        "prettier"
+    ],
+    "rules": {
+        "no-console": "warn",
+        "no-multiple-empty-lines": "warn",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/no-duplicates": "error",
+        "module-resolver/use-alias": "error",
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "unicorn/no-array-reduce": "off",
+        "unicorn/no-null": "off",
+        "unicorn/consistent-function-scoping": "off",
+        "unicorn/prevent-abbreviations": [
+            "error",
+            {
+                "allowList": {
+                    "params": true,
+                    "config": true,
+                    "props": true,
+                    "ref": true
+                }
+            }
+        ],
+        "unicorn/filename-case": [
+            "error",
+            {
+                "cases": {
+                    "camelCase": true,
+                    "pascalCase": true
+                }
+            }
+        ]
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "es2020": true,
+        "node": true,
+        "jest": true
+    },
+    "overrides": [
+        {
+            "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+            "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+        }
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "babel-module": {}
+        }
+    }
+}
