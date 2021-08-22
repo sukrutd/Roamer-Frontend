@@ -1,0 +1,60 @@
+.modal {
+    position: fixed;
+    top: 15vh;
+    left: 5%;
+    width: 90%;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 8px;
+
+    &__header {
+        width: 100%;
+        background: #2a006e;
+        color: white;
+
+        h3 {
+            margin: 0.5rem 0;
+            font-weight: 400;
+        }
+    }
+
+    &__footer {
+        text-align: right;
+    }
+
+    &__header,
+    &__content,
+    &__footer {
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .modal {
+        left: calc(50% - 20rem);
+        width: 40rem;
+    }
+}
+
+.modal-enter {
+    opacity: 0;
+    transform: translateY(-10rem);
+}
+
+.modal-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 200ms;
+}
+
+.modal-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal-exit-active {
+    opacity: 0;
+    transform: translateY(-10rem);
+    transition: all 200ms;
+}

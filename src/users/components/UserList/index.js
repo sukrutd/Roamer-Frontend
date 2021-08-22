@@ -1,20 +1,19 @@
-import './styles.scss';
-
-import Card from 'Components/Card';
 import React from 'react';
+import Card from 'Components/Card';
 import UserItem from 'Users/components/UserItem';
+import './styles.scss';
 
 const UserList = ({ users = [] }) => {
     if (users.length === 0) {
         return (
             <Card>
-                <div className='align-center'>No users found.</div>
+                <div className='align-center'>No places found. Do you wish to create one?</div>
             </Card>
         );
     }
 
     return (
-        <ul className='userList'>
+        <ul className='user-list'>
             {users.map((user) => (
                 <UserItem
                     key={user.id}

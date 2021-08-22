@@ -5,7 +5,8 @@ module.exports = {
     alias: {
         Users: './src/users',
         Places: './src/places',
+        Components: './src/components',
         Pages: './src/pages',
-        Components: './src/components'
+        Utils: './src/utils'
     }
 };

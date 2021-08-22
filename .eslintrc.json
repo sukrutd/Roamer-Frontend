@@ -12,7 +12,6 @@
         "jest-dom",
         "unicorn",
         "import",
-        "simple-import-sort",
         "module-resolver",
         "react",
         "react-hooks",
@@ -22,8 +21,6 @@
     "rules": {
         "no-console": "warn",
         "no-multiple-empty-lines": "warn",
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error",
         "import/first": "error",
         "import/no-duplicates": "error",
         "module-resolver/use-alias": "error",

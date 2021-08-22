@@ -1,6 +1,5 @@
-import './styles.scss';
-
 import React from 'react';
+import './styles.scss';
 
 const Card = ({ children, className }) => {
     const classes = `card  ${className || ''}`.trim();

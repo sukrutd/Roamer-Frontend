@@ -1,6 +1,5 @@
-import './styles.scss';
-
 import React from 'react';
+import './styles.scss';
 
 const Avatar = ({ className, image, altText }) => {
     const classes = `avatar  ${className || ''}`.trim();
