@@ -1,10 +1,9 @@
 import React from 'react';
+import clsx from 'clsx';
 import './styles.scss';
 
 const Card = ({ children, className }) => {
-    const classes = `card  ${className || ''}`.trim();
-
-    return <div className={classes}>{children}</div>;
+    return <div className={clsx('card', { [className]: !!className })}>{children}</div>;
 };
 
 export default Card;

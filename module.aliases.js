@@ -7,6 +7,7 @@ module.exports = {
         Places: './src/places',
         Components: './src/components',
         Pages: './src/pages',
-        Utils: './src/utils'
+        Utils: './src/utils',
+        Hooks: './src/hooks'
     }
 };

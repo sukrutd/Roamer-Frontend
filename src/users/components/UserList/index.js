@@ -6,9 +6,11 @@ import './styles.scss';
 const UserList = ({ users = [] }) => {
     if (users.length === 0) {
         return (
-            <Card>
-                <div className='align-center'>No places found. Do you wish to create one?</div>
-            </Card>
+            <div className='user-list'>
+                <Card className='align-center'>
+                    <h2 className='font-weight-normal'>No users found.</h2>
+                </Card>
+            </div>
         );
     }
 

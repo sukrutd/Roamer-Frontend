@@ -7,10 +7,22 @@ import './styles.scss';
 
 const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
     const [showMap, setShowMap] = useState(false);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
     const openMap = () => setShowMap(true);
 
     const closeMap = () => setShowMap(false);
+
+    const showDeleteWarningModal = () => setShowConfirmationModal(true);
+
+    const closeDeleteWarningModal = () => setShowConfirmationModal(false);
+
+    const deletePlace = () => {
+        closeDeleteWarningModal();
+
+        // eslint-disable-next-line no-console
+        console.log('Deleted...');
+    };
 
     return (
         <>
@@ -29,15 +41,39 @@ const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
                             VIEW ON MAP
                         </Button>
                         <Button to={`/places/${id}`}>EDIT</Button>
-                        <Button danger>DELETE</Button>
+                        <Button danger onClick={showDeleteWarningModal}>
+                            DELETE
+                        </Button>
                     </div>
                 </Card>
             </li>
+
+            <Modal
+                show={showConfirmationModal}
+                onCancel={closeDeleteWarningModal}
+                header='Are you sure?'
+                footer={
+                    <>
+                        <Button inverse onClick={closeDeleteWarningModal}>
+                            CANCEL
+                        </Button>
+                        <Button danger onClick={deletePlace}>
+                            DELETE
+                        </Button>
+                    </>
+                }
+            >
+                <p>
+                    Do you want to proceed and delete this place? Please note that it can not be
+                    undone thereafter.
+                </p>
+            </Modal>
+
             <Modal
                 show={showMap}
+                onCancel={closeMap}
                 header={address}
                 footer={<Button onClick={closeMap}>CLOSE</Button>}
-                onCancel={closeMap}
                 className='place_item__modal-content'
             >
                 <div className='map-container'>

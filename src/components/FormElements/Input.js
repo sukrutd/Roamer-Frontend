@@ -4,10 +4,10 @@ import { isFunction } from 'Utils';
 import clsx from 'clsx';
 import './input.scss';
 
-const inputReducer = (state, { type, payload, validators }) => {
+const inputReducer = (state, { type, value, validators }) => {
     switch (type) {
         case 'CHANGE':
-            return { ...state, value: payload, isValid: validate(payload, validators) };
+            return { ...state, value, isValid: validate(value, validators) };
 
         case 'TOUCH':
             return { ...state, isTouched: true };
@@ -19,19 +19,21 @@ const inputReducer = (state, { type, payload, validators }) => {
 
 const Input = ({
     id,
-    label,
     className,
-    placeholder,
     element = 'input',
     type = 'text',
     rows = 4,
+    initialValue,
+    initialValid,
+    label,
+    placeholder,
     validators = [],
     errorText,
     onInput
 }) => {
     const [{ value, isValid, isTouched }, dispatch] = useReducer(inputReducer, {
-        value: '',
-        isValid: false,
+        value: initialValue || '',
+        isValid: initialValid || false,
         isTouched: false
     });
 
@@ -40,7 +42,7 @@ const Input = ({
     }, [id, value, isValid, onInput]);
 
     const changeHandler = (event) => {
-        dispatch({ type: 'CHANGE', payload: event.target.value, validators });
+        dispatch({ type: 'CHANGE', value: event.target.value, validators });
     };
 
     const touchHandler = () => dispatch({ type: 'TOUCH' });

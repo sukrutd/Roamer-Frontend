@@ -1,14 +1,18 @@
 import React from 'react';
 import Card from 'Components/Card';
 import PlaceItem from 'Places/components/PlaceItem';
+import { Button } from 'Components/FormElements';
 import './styles.scss';
 
 const PlaceList = ({ places = [] }) => {
     if (places.length === 0) {
         return (
-            <Card>
-                <div className='align-center'>No users found.</div>
-            </Card>
+            <div className='place-list'>
+                <Card className='align-center'>
+                    <h2 className='font-weight-normal'>No places found. Maybe create one?</h2>
+                    <Button to='/places/new'>Share Place</Button>
+                </Card>
+            </div>
         );
     }
 
