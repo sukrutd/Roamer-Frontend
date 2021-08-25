@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from 'Context/AuthContext';
 import { Button } from 'Components/FormElements';
 import Modal from 'Components/Modal';
 import Card from 'Components/Card';
@@ -6,6 +7,7 @@ import Map from 'Components/Map';
 import './styles.scss';
 
 const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
+    const auth = useContext(AuthContext);
     const [showMap, setShowMap] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
@@ -40,10 +42,14 @@ const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
                         <Button inverse onClick={openMap}>
                             VIEW ON MAP
                         </Button>
-                        <Button to={`/places/${id}`}>EDIT</Button>
-                        <Button danger onClick={showDeleteWarningModal}>
-                            DELETE
-                        </Button>
+                        {auth.isLoggedIn && (
+                            <>
+                                <Button to={`/places/${id}`}>EDIT</Button>
+                                <Button danger onClick={showDeleteWarningModal}>
+                                    DELETE
+                                </Button>
+                            </>
+                        )}
                     </div>
                 </Card>
             </li>

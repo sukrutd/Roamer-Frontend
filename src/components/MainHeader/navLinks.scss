@@ -27,6 +27,25 @@
             color: #292929;
         }
     }
+
+    button {
+        cursor: pointer;
+        color: #292929;
+        border: 1px solid #292929;
+        background: transparent;
+        padding: 0.5rem;
+        font: inherit;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover,
+        &:active {
+            background: #292929;
+            color: white;
+        }
+    }
 }
 
 @media (min-width: 768px) {
@@ -40,6 +59,19 @@
         a {
             color: white;
             text-decoration: none;
+        }
+
+        button {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+
+            &:hover,
+            &:active {
+                background: #f8df00;
+                border: 1px solid #292929;
+                color: #292929;
+            }
         }
     }
 }

@@ -1,0 +1,21 @@
+.auth-section {
+    width: 90%;
+    max-width: 25rem;
+    margin: 7rem auto;
+
+    form {
+        padding: 1rem 0;
+    }
+
+    .switch-mode {
+        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            margin: 0.5rem;
+        }
+    }
+}
