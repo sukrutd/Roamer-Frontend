@@ -1,5 +1,5 @@
 {
-    "name": "roamer-app",
+    "name": "roamer-frontend",
     "version": "1.0.0",
     "description": "React Frontend",
     "main": "index.js",
