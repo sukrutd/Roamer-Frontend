@@ -4,7 +4,7 @@ import PlaceItem from 'Places/components/PlaceItem';
 import { Button } from 'Components/FormElements';
 import './styles.scss';
 
-const PlaceList = ({ places = [] }) => {
+const PlaceList = ({ places = [], onDeletePlace }) => {
     if (places.length === 0) {
         return (
             <div className='place-list'>
@@ -27,7 +27,8 @@ const PlaceList = ({ places = [] }) => {
                     address={place.address}
                     creatorId={place.creator}
                     coordinates={place.location}
-                    image={place.imageUrl}
+                    image={place.image}
+                    onDelete={onDeletePlace}
                 />
             ))}
         </ul>

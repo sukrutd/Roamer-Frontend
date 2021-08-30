@@ -28,8 +28,10 @@
         "react/react-in-jsx-scope": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "unicorn/no-array-reduce": "off",
         "unicorn/no-null": "off",
+        "unicorn/no-array-reduce": "off",
+        "unicorn/no-array-for-each": "off",
+        "unicorn/catch-error-name": "off",
         "unicorn/consistent-function-scoping": "off",
         "unicorn/prevent-abbreviations": [
             "error",
@@ -38,7 +40,8 @@
                     "params": true,
                     "config": true,
                     "props": true,
-                    "ref": true
+                    "ref": true,
+                    "err": true
                 }
             }
         ],

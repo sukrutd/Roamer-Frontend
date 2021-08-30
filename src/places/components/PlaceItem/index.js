@@ -1,15 +1,28 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from 'Context/AuthContext';
+import { useHttpClient } from 'Hooks/useHttpClient';
 import { Button } from 'Components/FormElements';
+import LoadingSpinner from 'Components/LoadingSpinner';
+import ErrorModal from 'Components/ErrorModal';
 import Modal from 'Components/Modal';
 import Card from 'Components/Card';
 import Map from 'Components/Map';
 import './styles.scss';
 
-const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
+const PlaceItem = ({
+    id,
+    title,
+    description,
+    address,
+    coordinates,
+    image,
+    creatorId,
+    onDelete
+}) => {
     const auth = useContext(AuthContext);
     const [showMap, setShowMap] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
     const openMap = () => setShowMap(true);
 
@@ -22,14 +35,16 @@ const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
     const deletePlace = () => {
         closeDeleteWarningModal();
 
-        // eslint-disable-next-line no-console
-        console.log('Deleted...');
+        sendRequest(`http://localhost:5000/api/places/${id}`, 'DELETE').then(() => onDelete(id));
     };
 
     return (
         <>
+            <ErrorModal error={error} onClear={clearError} />
+
             <li className='place-item'>
                 <Card className='place-item__content'>
+                    {isLoading && <LoadingSpinner asOverlay />}
                     <div className='place-item__image'>
                         <img src={image} alt={title} />
                     </div>
@@ -42,7 +57,7 @@ const PlaceItem = ({ id, title, description, address, coordinates, image }) => {
                         <Button inverse onClick={openMap}>
                             VIEW ON MAP
                         </Button>
-                        {auth.isLoggedIn && (
+                        {auth.userId === creatorId && (
                             <>
                                 <Button to={`/places/${id}`}>EDIT</Button>
                                 <Button danger onClick={showDeleteWarningModal}>
