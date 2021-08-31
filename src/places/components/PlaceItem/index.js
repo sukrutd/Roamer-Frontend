@@ -35,7 +35,9 @@ const PlaceItem = ({
     const deletePlace = () => {
         closeDeleteWarningModal();
 
-        sendRequest(`http://localhost:5000/api/places/${id}`, 'DELETE').then(() => onDelete(id));
+        sendRequest(`http://localhost:5000/api/places/${id}`, 'DELETE', null, {
+            Authorization: `Bearer ${auth.token}`
+        }).then(() => onDelete(id));
     };
 
     return (

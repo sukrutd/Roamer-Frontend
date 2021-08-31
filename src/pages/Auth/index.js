@@ -38,7 +38,7 @@ const Auth = () => {
                 {
                     'Content-Type': 'application/json'
                 }
-            ).then((data) => auth.login(data.user.id));
+            ).then((data) => auth.login(data.userId, data.token));
         } else {
             const formData = new FormData();
             formData.append('name', formState.inputs.name.value);
@@ -47,7 +47,7 @@ const Auth = () => {
             formData.append('image', formState.inputs.image.value);
 
             sendRequest('http://localhost:5000/api/users/signup', 'POST', formData).then((data) =>
-                auth.login(data.user.id)
+                auth.login(data.userId, data.token)
             );
         }
     };

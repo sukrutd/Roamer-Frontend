@@ -31,11 +31,10 @@ const NewPlace = () => {
         formData.append('description', formState.inputs.description.value);
         formData.append('address', formState.inputs.address.value);
         formData.append('image', formState.inputs.image.value);
-        formData.append('creator', auth.userId);
 
-        sendRequest('http://localhost:5000/api/places', 'POST', formData).then(() =>
-            history.push('/')
-        );
+        sendRequest('http://localhost:5000/api/places', 'POST', formData, {
+            Authorization: `Bearer ${auth.token}`
+        }).then(() => history.push('/'));
     };
 
     return (
