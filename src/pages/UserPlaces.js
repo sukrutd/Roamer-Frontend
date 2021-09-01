@@ -11,7 +11,7 @@ const UserPlaces = () => {
     const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
     useEffect(() => {
-        sendRequest(`http://localhost:5000/api/places/user/${userId}`).then((data) =>
+        sendRequest(`${process.env.SERVER_URL}/places/user/${userId}`).then((data) =>
             setLoadedPlaces(data.places)
         );
     }, [sendRequest, userId]);

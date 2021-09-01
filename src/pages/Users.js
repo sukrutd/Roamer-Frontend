@@ -9,7 +9,7 @@ const Users = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        sendRequest('http://localhost:5000/api/users').then((data) => setUsers(data.users));
+        sendRequest(`${process.env.SERVER_URL}/users`).then((data) => setUsers(data.users));
     }, [sendRequest]);
 
     return (

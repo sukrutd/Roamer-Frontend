@@ -24,7 +24,7 @@ const UpdatePlace = () => {
     );
 
     useEffect(() => {
-        sendRequest(`http://localhost:5000/api/places/${placeId}`).then((data) => {
+        sendRequest(`${process.env.SERVER_URL}/places/${placeId}`).then((data) => {
             setLoadedPlace(data.place);
             setFormData(
                 {
@@ -39,7 +39,7 @@ const UpdatePlace = () => {
     const updatePlace = (event) => {
         event.preventDefault();
         sendRequest(
-            `http://localhost:5000/api/places/${placeId}`,
+            `${process.env.SERVER_URL}/places/${placeId}`,
             'PATCH',
             JSON.stringify({
                 title: formState.inputs.title.value,

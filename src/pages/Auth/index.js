@@ -29,7 +29,7 @@ const Auth = () => {
 
         if (isLoginMode) {
             sendRequest(
-                'http://localhost:5000/api/users/login',
+                `${process.env.SERVER_URL}/users/login`,
                 'POST',
                 JSON.stringify({
                     email: formState.inputs.email.value,
@@ -46,7 +46,7 @@ const Auth = () => {
             formData.append('password', formState.inputs.password.value);
             formData.append('image', formState.inputs.image.value);
 
-            sendRequest('http://localhost:5000/api/users/signup', 'POST', formData).then((data) =>
+            sendRequest(`${process.env.SERVER_URL}/users/signup`, 'POST', formData).then((data) =>
                 auth.login(data.userId, data.token)
             );
         }

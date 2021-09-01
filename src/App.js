@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { AuthContext } from 'Context/AuthContext';
-import { useAuth } from 'Hooks/useAuth';
+import LoadingSpinner from 'Components/LoadingSpinner';
 import MainHeader from 'Components/MainHeader';
-import UserPlaces from 'Pages/UserPlaces';
-import NewPlace from 'Pages/NewPlace';
-import UpdatePlace from 'Pages/UpdatePlace';
-import Users from 'Pages/Users';
-import Auth from 'Pages/Auth';
+import { useAuth } from 'Hooks/useAuth';
+
+const Auth = lazy(() => import('Pages/Auth'));
+const Users = lazy(() => import('Pages/Users'));
+const NewPlace = lazy(() => import('Pages/NewPlace'));
+const UpdatePlace = lazy(() => import('Pages/UpdatePlace'));
+const UserPlaces = lazy(() => import('Pages/UserPlaces'));
 
 const App = () => {
     const { userId, token, login, logout } = useAuth();
@@ -33,7 +35,17 @@ const App = () => {
         <AuthContext.Provider value={{ isLoggedIn: !!token, token, userId, login, logout }}>
             <Router>
                 <MainHeader />
-                <main>{routes}</main>
+                <main>
+                    <Suspense
+                        fallback={
+                            <div className='align-center'>
+                                <LoadingSpinner />
+                            </div>
+                        }
+                    >
+                        {routes}
+                    </Suspense>
+                </main>
             </Router>
         </AuthContext.Provider>
     );

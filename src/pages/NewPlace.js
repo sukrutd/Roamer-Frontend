@@ -32,7 +32,7 @@ const NewPlace = () => {
         formData.append('address', formState.inputs.address.value);
         formData.append('image', formState.inputs.image.value);
 
-        sendRequest('http://localhost:5000/api/places', 'POST', formData, {
+        sendRequest(`${process.env.SERVER_URL}/places`, 'POST', formData, {
             Authorization: `Bearer ${auth.token}`
         }).then(() => history.push('/'));
     };
